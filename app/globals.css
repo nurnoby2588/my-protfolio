@@ -1,29 +1,186 @@
 @import "tailwindcss";
 
 /* Light mode (default) */
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #000000;
   --accent: #FF8F8F;
   --card-bg: #f9f9f9;
   --border: #e5e5e5;
-}
+} */
 
 /* Dark mode */
-[data-theme="dark"],
+/* [data-theme="dark"],
 html.dark {
-  --background: #0a0a0a;
+  --background: #0d0218;
   --foreground: #ffffff;
   --accent: #FF8F8F;
   --card-bg: #1a1a1a;
   --border: #333333;
+  --text-hover: black;
+} */
+/* globals.css */
+
+/* Light mode (default) */
+/* :root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --accent: #FF8F8F;
+  --card-bg: #f9f9f9;
+  --border: #e5e5e5;
+
+ 
+  --muted: #555555;
+  --text-hover: #111111;       
+  --card-bg-hover: #fcf4ff;
+  --card-border-hover: #FF8F8F;    
+  --shadow-rgb: 0,0,0;          
+} */
+
+/* Dark mode */
+/* [data-theme="dark"],
+html.dark {
+  --background: #0d0218;
+  --foreground: #ffffff;
+  --accent: #FF8F8F;
+  --card-bg: #1a1a1a;
+  --border: #333333;
+
+  --muted: #cccccc;
+  --text-hover: #e6e6e6;       
+  --card-bg-hover: #160a22;
+  --card-border-hover: #ffffff;    
+  --shadow-rgb: 0,0,0;
+} */
+
+/* =========================
+   Theme Variables (Light)
+   ========================= */
+:root {
+  /* App surface */
+  --bg: #F5F7FB;
+  /* --bg-gradient: */
+  --font-color: #1f1e1e;
+  /* --font-color-gradient: */
+  --nav-bg: rgba(245, 247, 251, 0.493);
+  --nav-shawod: rgb(197, 196, 196);
+  --nav-item-bg: rgba(255, 255, 255, 0.5);
+  --nav-item-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --rightbar-bg: #EFE4D2;
+  --accent: #FF8F8F;
+
+  /* Cards and borders */
+  --card-bg: #f7f7fb;
+  --card-bg-hover: #f8eefc;
+  --card-gradient-from: pink;
+  --card-gradient-via: purple;
+  --card-gradient-to: rgba(133, 20, 133, 0.76);
+  --border: #e5e5e5;
+  --border-hover: #bb3d3d;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  --button-bg-l: white;
+  --button-bg-gradient: white;
+
+  /* Extras */
+  --muted: #555555;
+  --text-hover: #111111;
+
+  /* dialoge */
+  --dialog-bg: rgba(245, 247, 251, 0.938);
+  --dialoag-card-bg: #f7f7fb;
+  
+  --card-border-hover: #FF8F8F;
+  --shadow-rgb: 0, 0, 0;
+
+  /* Inputs (light) */
+  --input-bg: #ffffff;
+  --input-fg: #111111;
+  --input-border: #e5e5e5;
+
+  /* Placeholder (light) */
+  --placeholder: #9aa0a6;
+  --placeholder-hover: #8a8f94;
+  /* --navbg: rgba(13, 2, 24, 0.363); */
+  --placeholder-focus: #7a7f84;
 }
+
+/* =========================
+   Theme Variables (Dark)
+   ========================= */
+[data-theme="dark"],
+html.dark {
+  /* App surface */
+  --bg: #0E1014;
+  /* --bg-gradient: */
+  --font-color: #ffffff;
+  /* --font-color-gradient: */
+  --nav-bg: rgba(13, 2, 24, 0.363);
+  --nav-shawod: rgb(78, 78, 78);
+  --nav-item-bg: var(--bg);
+  --nav-item-shadow: 0 0 0 .5px gray;
+  --rightbar-bg: #254D70;
+  --accent: #FF8F8F;
+
+  /* Cards and borders */
+  --card-bg: #181129;
+  --card-bg-hover: #132440;
+  --card-gradient-from: #5A73FF;
+  --card-gradient-via: #b4301e;
+  --card-gradient-to: #2CC6A0;
+  --border: #44444E;
+  --border-hover: #113a70;
+  --card-shadow: 0 4px 10px rgba(255, 255, 255, 0.06), 0 20px 40px rgba(255, 255, 255, 0.10);
+
+  --button-bg-l: black;
+  --button-bg-gradinet: black;
+  /* Extras */
+  --muted: #cccccc;
+  --text-hover: #e6e6e6;
+  --card-border-hover: #ffffff;
+  --shadow-rgb: 0, 0, 0;
+
+  /* dialoge */
+  --dialog-bg: #0e1014d0;
+   --dialoag-card-bg: #132440;
+
+  /* Inputs (dark) */
+  --input-bg: #121212;
+  --input-fg: #e8e8e8;
+  --input-border: #333333;
+
+  /* Placeholder (dark) */
+  --placeholder: #9ba3af;
+  /* slate-400-ish */
+  --placeholder-hover: #a3acb8;
+  --placeholder-focus: #b3bdc8;
+}
+
+.transparent-bg {
+  background-color: var(--nav-bg);
+  /* border: 1px solid red; */
+  box-shadow: .5px .5px var(--nav-shawod);
+}
+
+.nab-item-bg {
+  background-color: var(--nav-item-bg);
+  box-shadow: var(--nav-item-shadow)
+}
+
+/* .card-gradient {
+  background: linear-gradient(to top,
+      var(--card-gradient-from),
+      var(--card-gradient-via),
+      var(--card-gradient-to));
+} */
+
 
 /* Default font (Outfit) applied globally */
 html {
   font-family: var(--font-outfit), sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg);
+  /* background-image: linear-gradient(); */
+  color: var(--font-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -45,4 +202,41 @@ a .light:hover {
 .grid_auto {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+
+/* =========================
+   Input Theme Utility
+   ========================= */
+.input-theme {
+  background-color: var(--input-bg);
+  color: var(--input-fg);
+  border-color: var(--input-border);
+}
+
+/* Ensure placeholder is always visible and themed */
+.input-theme::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+  /* fix Safari fade */
+}
+
+.input-theme:hover::placeholder {
+  color: var(--placeholder-hover);
+}
+
+.input-theme:focus::placeholder {
+  color: var(--placeholder-focus);
+}
+
+/* Accessible focus outline (optional) */
+.input-theme:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  outline-offset: 2px;
+}
+
+.input-theme:hover {
+  border: 0.5px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  ;
+  transition-duration: 500ms;
 }

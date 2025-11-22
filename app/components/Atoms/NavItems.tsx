@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import { motion } from "motion/react"
 type NavItemsProps = {
     name: string,
     route: string,
@@ -10,9 +11,12 @@ const NavItems: React.FC<NavItemsProps> = ({ name, route, className, onClick }) 
 
     return (
         <>
-            <li className={className}>
+            <motion.li
+                whileHover={{ scale: 1.09 }}
+                whileTap={{ scale: 0.95 }}
+                className={className}>
                 <Link onClick={onClick} href={`#${route}`}>{name}</Link>
-            </li>
+            </motion.li>
         </>
     )
 }

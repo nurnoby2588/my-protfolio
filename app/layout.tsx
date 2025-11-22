@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit,Ovo,Changa_One } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "./components/ThemeProvider";
+import ThemeProvider from "@/app/components/ThemeProvider";
 
 // Configure Outfit font
 const outfit = Outfit({
@@ -25,7 +25,7 @@ const changaOne = Changa_One({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Nurnoby Rahaman",
   description: "Full-stack developer portfolio",
 };
 
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth light" suppressHydrationWarning>
       <body className={`${outfit.variable} ${ovo.variable} ${changaOne.variable} antialiased leading-8 overflow-x-hidden`}>
         <ThemeProvider>
           {children}

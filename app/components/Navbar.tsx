@@ -9,20 +9,26 @@ import IconButton from "./Atoms/IconButton";
 import Link from "next/link";
 import { MdClose } from "react-icons/md";
 import NavItems from "./Atoms/NavItems";
+import { FiSun } from "react-icons/fi";
+import { motion } from "motion/react"
 
+type NavbarProps = {
+    isDarkMode?: boolean,
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
 // Navigation items
 const navitem = [
     { route: "home", name: "Home" },
     { route: "about", name: "About me" },
     { route: "services", name: "Services" },
+    { route: "skill", name: "Skills" },
     { route: "work", name: "My Work" },
-    { route: "contact", name: "Contact Me" },
+    { route: "contact", name: "Contact me" },
 ];
-
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ isDarkMode, setIsDarkMode }) => {
     const sideMenuRef = useRef<HTMLUListElement | null>(null);
     const [isScroll, setIsScroll] = useState(false)
-
+    
     const openMenu = () => {
         sideMenuRef.current
             ? (sideMenuRef.current.style.transform = "translateX(-16rem)")
@@ -44,25 +50,30 @@ const Navbar: React.FC = () => {
             }
         })
     }, [])
+
     return (
         <>
-            <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-3 flex items-center justify-between z-50 ${isScroll ? " shadow-sm backdrop-blur-lg " : ""}`} style={isScroll ? { backgroundColor: "rgba(255, 255, 255, 0.5)" } : {}}>
+            <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-3 flex items-center justify-between z-40 ${isScroll ? " shadow-sm backdrop-blur-lg transparent-bg" : ""}`}
+            >
                 {/* Left Logo */}
-                <a href="#top">
+                <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    href="#top"
+                    className="lg:mr-[10%]">
                     <Image
                         src={asstects.nurlogo}
                         alt="logo"
-                        className="w-20 cursor-pointer mr-14 animate-bounce"
+                        className="w-20 cursor-pointer  animate-bounce"
                     />
 
-                </a>
+                </motion.a>
 
                 {/* Center Navigation */}
                 <ul
-                    className={`hidden md:flex items-center justify-center gap-6 lg:gap-8  px-12 py-3  mx-auto ${isScroll ? "" : "shadow-sm rounded-full"}`}
-                    style={isScroll ? {} : { backgroundColor: "rgba(255, 255, 255, 0.5)" }}
+                    className={`hidden md:flex items-center justify-center gap-6 lg:gap-8  px-12 py-3  mx-auto ${isScroll ? "" : "shadow-sm rounded-full nab-item-bg"}`}
                 >
-                    {navitem.map((item, index) => (
+                    {navitem.slice(0,5).map((item, index) => (
                         <NavItems
                             className="font-ovo"
                             name={item?.name}
@@ -74,35 +85,51 @@ const Navbar: React.FC = () => {
 
                 {/* Right Buttons */}
                 <div className="flex items-center gap-2 justify-end">
-                    {/* Dark Mode Button */}
-                    <button className="text-3xl cursor-pointer">
-                        <IoMoonOutline />
-                    </button>
+                    <motion.button
+                        whileHover={{ scale: 1.3 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                            setIsDarkMode(prev => {
+                                const next = !prev;
+                                // persist the next value
+                                try {
+                                    localStorage.setItem("mode", JSON.stringify(next));
+                                } catch { }
+                                return next;
+                            });
+                        }}
+                        className="text-3xl cursor-pointer"
+                    >
+                        {isDarkMode ? <IoMoonOutline /> : <FiSun />}
+                    </motion.button>
+
 
                     {/* Contact Button */}
-                    <a
-                        className="hidden lg:flex items-center gap-3 px-10 py-1 border-2 border-gray-500 rounded-full ml-4 hover:border-red-500 hover:text-red-500 transition-all duration-700"
+                    <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="hidden lg:flex items-center gap-3 px-10 py-2 border-2 border-[var(--border)] rounded-full ml-4  "
                         href="#contact"
                     >
-                        <span> Contact</span>
+                        <span> Contact me</span>
                         <span className="text-xl">
                             <MdArrowOutward />
                         </span>
-                    </a>
+                    </motion.a>
 
                     {/* Mobile Menu Button */}
                     <IconButton
                         variant="none"
                         onClick={openMenu}
                         size="small"
-                        icon={<RiMenuUnfold4Fill className="text-3xl block md:hidden" />}
-                    />
+                       
+                    > <RiMenuUnfold4Fill className="text-3xl block md:hidden" /></IconButton>
                 </div>
 
                 {/* Mobile Menu */}
                 <ul
                     ref={sideMenuRef}
-                    className="font-ovo flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-sereen bg-rose-50 transition-transform duration-500"
+                    className="font-ovo flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-[var(--rightbar-bg)] transition-transform duration-500"
                 >
                     {/* Close Button */}
                     <div>
